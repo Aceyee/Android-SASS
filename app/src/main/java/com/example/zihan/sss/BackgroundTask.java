@@ -120,10 +120,11 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             alertDialog.show();
             if(result.contains("Success")){
                 if(result.contains("Student")){
-                    ctx.startActivity(new Intent(ctx, MainActivity.class));
+                    MainActivity.setRoll("Student");
                 }else{
-                    
+                    MainActivity.setRoll("Professor");
                 }
+                ctx.startActivity(new Intent(ctx, MainActivity.class));
             }
         }
     }
