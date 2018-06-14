@@ -64,10 +64,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 return "Registration Success";
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-                return "fail 1";
+                return "Debug: fail 1";
             } catch (IOException e) {
                 e.printStackTrace();
-                return "fail 2";
+                return "Debug: fail 2";
             }
         }else if(method.equals("login")){
             String login_name = params[1];
@@ -119,7 +119,11 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             alertDialog.setMessage(result);
             alertDialog.show();
             if(result.contains("Success")){
-                ctx.startActivity(new Intent(ctx, MainActivity.class));
+                if(result.contains("Student")){
+                    ctx.startActivity(new Intent(ctx, MainActivity.class));
+                }else{
+                    
+                }
             }
         }
     }
