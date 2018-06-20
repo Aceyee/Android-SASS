@@ -13,11 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class ItemOneProfessorFragment extends Fragment {
-    Button a;
-    Button b;
-    Button c;
-    Button d;
-    Button e;
+    Button btn_create;
     public static ItemOneProfessorFragment newInstance() {
         ItemOneProfessorFragment fragment = new ItemOneProfessorFragment();
         return fragment;
@@ -35,6 +31,18 @@ public class ItemOneProfessorFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        btn_create = (Button)view.findViewById(R.id.btn_create);
+        btn_create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                String method = "createSession";
+//                BackgroundTask backgroundTask = new BackgroundTask(this);
+//                backgroundTask.execute(method, user_name, user_pass, user_roll);
+//                finish();
+            }
+        });
+    }
+    public void createSession(){
 
     }
 }
