@@ -40,7 +40,4 @@ public class ItemOneProfessorFragment extends Fragment {
             }
         });
     }
-    public void createSession(){
-
-    }
 }
