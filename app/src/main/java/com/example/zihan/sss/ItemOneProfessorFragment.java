@@ -4,6 +4,7 @@ package com.example.zihan.sss;
  * Created by Zihan on 2018/5/5.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -35,10 +36,7 @@ public class ItemOneProfessorFragment extends Fragment {
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String method = "createSession";
-//                BackgroundTask backgroundTask = new BackgroundTask(this);
-//                backgroundTask.execute(method, user_name, user_pass, user_roll);
-//                finish();
+                startActivity(new Intent(getContext(), CreateSession.class));
             }
         });
     }
