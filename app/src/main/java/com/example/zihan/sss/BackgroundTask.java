@@ -42,11 +42,13 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         }else if(method.equals("login")){
             return BackgroundLogin(params);
         }
-        return "register/login fail";
+        return "register or login fail";
     }
 
     private String BackgroundLogin(String[] params) {
-        String login_url = "http://10.0.2.2/login.php";
+//        String login_url = "http://10.0.2.2/login.php";
+        String login_url = "http://www.squareink.xyz/login.php";
+
         String login_name = params[1];
         String login_pass = params[2];
         try {
@@ -84,7 +86,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
     private String BackgroundRegister(String[] params) {
         /* According to Emulator Networking IP 10.0.2.2 should be used instead of localhost/127.0.0.1. */
-        String reg_url = "http://10.0.2.2/register.php";
+//        String reg_url = "http://10.0.2.2/register.php";
+        String reg_url ="http://www.squareink.xyz/register.php";
         String user_name = params[1];
         String user_pass = params[2];
         String user_roll = params[3];
