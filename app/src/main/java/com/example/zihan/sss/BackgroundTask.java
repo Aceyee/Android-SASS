@@ -41,8 +41,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             return BackgroundRegister(params);
         }else if(method.equals("login")){
             return BackgroundLogin(params);
+        }else if(method.equals("createSession")){
+            System.out.print("createSession");
         }
-        return "register or login fail";
+        return "no condition met";
     }
 
     private String BackgroundLogin(String[] params) {
