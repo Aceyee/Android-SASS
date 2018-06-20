@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 });
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, ItemOneProfessorFragment.newInstance());
+        if(roll.equals("Student")) {
+            transaction.replace(R.id.frame_layout, ItemOneStudentFragment.newInstance());
+        }else if(roll.equals("Professor")){
+            transaction.replace(R.id.frame_layout, ItemOneProfessorFragment.newInstance());
+        }
         transaction.commit();
     }
 
