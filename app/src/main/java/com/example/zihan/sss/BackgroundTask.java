@@ -50,7 +50,38 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundSearchSession(String[] params) {
-        return "seach session";
+        String search_url = "http://10.0.2.2/searchsession.php";
+        String search_input = params[1];
+        try {
+            URL url = new URL(search_url);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String data = URLEncoder.encode("searchinput", "UTF-8")+"="+URLEncoder.encode(search_input,"UTF-8");
+            bufferedWriter.write(data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            String response = "";
+            String line ="";
+            while ((line=bufferedReader.readLine())!=null){
+                response +=line;
+            }
+            bufferedReader.close();
+            inputStream.close();
+            return response;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "search failed";
     }
 
     private String BackgroundLogin(String[] params) {
