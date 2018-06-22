@@ -4,6 +4,7 @@ package com.example.zihan.sss;
  * Created by Zihan on 2018/5/5.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,11 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class ItemOneStudentFragment extends Fragment {
-    Button a;
-    Button b;
-    Button c;
-    Button d;
-    Button e;
+    Button btn_search;
+
     public static ItemOneStudentFragment newInstance() {
         ItemOneStudentFragment fragment = new ItemOneStudentFragment();
         return fragment;
@@ -35,48 +33,14 @@ public class ItemOneStudentFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        a = (Button) getView().findViewById(R.id.buttonA);
-        b = (Button) getView().findViewById(R.id.buttonB);
-        c = (Button) getView().findViewById(R.id.buttonC);
-        d = (Button) getView().findViewById(R.id.buttonD);
-        e = (Button) getView().findViewById(R.id.buttonE);
-        initialize();
+        btn_search = (Button)view.findViewById(R.id.btn_search);
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchSession.class));
+            }
+        });
     }
 
-    private void initialize() {
-        addListener();
-    }
 
-    private void addListener() {
-        a.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("A被点击了");
-            }
-        });
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("B被点击了");
-            }
-        });
-        c.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("C被点击了");
-            }
-        });
-        d.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("D被点击了");
-            }
-        });
-        e.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("E被点击了");
-            }
-        });
-    }
 }

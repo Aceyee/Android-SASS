@@ -43,8 +43,14 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             return BackgroundLogin(params);
         }else if(method.equals("createSession")){
             return BackgroundCreateSession(params);
+        }else if(method.equals("search")){
+            return BackgroundSearchSession(params);
         }
         return "no condition met";
+    }
+
+    private String BackgroundSearchSession(String[] params) {
+        return "seach session";
     }
 
     private String BackgroundLogin(String[] params) {

@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".CreateSession">
         </activity>
+        <activity android:name=".SearchSession">
+        </activity>
     </application>
 
 </manifest>
