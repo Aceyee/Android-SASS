@@ -20,6 +20,6 @@ public class SearchSession extends AppCompatActivity {
         String method = "search";
         BackgroundTask backgroundTask = new BackgroundTask(this);
         backgroundTask.execute(method, searchtext);
-        finish();
+        //finish();
     }
 }
