@@ -207,9 +207,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 MainActivity.setRoll("Professor");
             }
             ctx.startActivity(new Intent(ctx, MainActivity.class));
-        }else{
-            alertDialog.setMessage(result);
-            alertDialog.show();
+        }else if(result.contains("Search Success")){
+
         }
+        alertDialog.setMessage(result);
+        alertDialog.show();
     }
 }
