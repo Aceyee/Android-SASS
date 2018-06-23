@@ -208,7 +208,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             }
             ctx.startActivity(new Intent(ctx, MainActivity.class));
         }else if(result.contains("Search Success")){
-
+            ItemOneStudentFragment.addItems(result);
         }
         alertDialog.setMessage(result);
         alertDialog.show();

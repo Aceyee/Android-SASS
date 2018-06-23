@@ -20,10 +20,10 @@ import java.util.ArrayList;
 public class ItemOneStudentFragment extends Fragment {
     Button btn_search;
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
-    ArrayList<String> listItems=new ArrayList<String>();
+    static ArrayList<String> listItems=new ArrayList<String>();
 
     //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
-    ArrayAdapter<String> adapter;
+    static ArrayAdapter<String> adapter;
     //RECORDING HOW MANY TIMES THE BUTTON HAS BEEN CLICKED
     int clickCounter=0;
 
@@ -63,8 +63,8 @@ public class ItemOneStudentFragment extends Fragment {
 //        });
     }
     //METHOD WHICH WILL HANDLE DYNAMIC INSERTION
-    public void addItems() {
-        //listItems.add("Clicked : "+clickCounter++);
-        //adapter.notifyDataSetChanged();
+    public static void addItems(String string) {
+        listItems.add(string);
+        adapter.notifyDataSetChanged();
     }
 }
