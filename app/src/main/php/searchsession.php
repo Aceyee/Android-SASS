@@ -5,20 +5,16 @@
     $search_input = $_POST["searchinput"];
 
     //$sql_query = "SELECT course from session WHERE course like '$search_input';";
-    $sql_query = "SELECT course from session WHERE REPLACE(course, ' ', '') = REPLACE('$search_input', ' ', '');";
-    $result_course = mysqli_query($con, $sql_query);
-    if(mysqli_num_rows($result_course)>0){
-            $row = mysqli_fetch_assoc($result_course);
-            //$course = $row["course"];
-            $data = data($row);
-            echo "Search Success ".$data;
+    $sql_query = "SELECT * from session WHERE REPLACE(course, ' ', '') = REPLACE('$search_input', ' ', '');";
+    $result = mysqli_query($con, $sql_query);
+    $response = array();
+
+    if(mysqli_num_rows($result)>0){
+        while($row = mysqli_fetch_array($result)){
+            array_push($response, array("university"=>$row[0], "course"=>$row[1], "professor"=>$row[2]));
+        }
+        echo "Search Success ".json_encode(array("server response"=>$response));
     }else{
         echo "Search Fail. No Result";
-    }
-    function data($row){
-        $out['course'] = $row['course'];
-        $out['university'] = $row['university'];
-        $out['professor'] = $row['professor'];
-        return $out;
     }
 ?>
