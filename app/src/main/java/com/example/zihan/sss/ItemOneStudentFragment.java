@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,8 @@ import java.util.ArrayList;
 
 public class ItemOneStudentFragment extends Fragment {
     Button btn_search;
-    //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
-    static ArrayList<String> listItems=new ArrayList<String>();
-
-    //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
-    static ArrayAdapter<String> adapter;
-    //RECORDING HOW MANY TIMES THE BUTTON HAS BEEN CLICKED
-    int clickCounter=0;
+    static ArrayList<CourseSession> courselist = new ArrayList<>();
+    static CourseListAdapter adapter;
 
     public static ItemOneStudentFragment newInstance() {
         ItemOneStudentFragment fragment = new ItemOneStudentFragment();
@@ -46,7 +42,7 @@ public class ItemOneStudentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         btn_search = (Button)view.findViewById(R.id.btn_search);
         ListView lv = (ListView)view.findViewById(R.id.courselist);
-        adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,listItems);
+        adapter = new CourseListAdapter(getContext(), R.layout.adapter_view_layout, courselist);
         lv.setAdapter(adapter);
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,17 +50,10 @@ public class ItemOneStudentFragment extends Fragment {
                 startActivity(new Intent(getContext(), SearchSession.class));
             }
         });
-
-//        btn_search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                addItems(view);
-//            }
-//        });
     }
-    //METHOD WHICH WILL HANDLE DYNAMIC INSERTION
-    public static void addItems(String string) {
-        listItems.add(string);
+
+    public static void addItems(CourseSession courseSession) {
+        courselist.add(courseSession);
         adapter.notifyDataSetChanged();
     }
 }
