@@ -13,7 +13,7 @@
         while($row = mysqli_fetch_array($result)){
             array_push($response, array("university"=>$row[0], "course"=>$row[1], "professor"=>$row[2]));
         }
-        echo "Search Success ".json_encode(array("server response"=>$response));
+        echo json_encode(array("Search Success"=>$response));
     }else{
         echo "Search Fail. No Result";
     }
