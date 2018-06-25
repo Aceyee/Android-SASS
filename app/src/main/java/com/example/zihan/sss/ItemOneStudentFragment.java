@@ -19,15 +19,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class ItemOneStudentFragment extends Fragment {
-    private static final String TAG = "MainActivity";
     Button btn_search;
-    //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
-    static ArrayList<String> listItems=new ArrayList<String>();
-
-    //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
-    static ArrayAdapter<String> adapter;
-    //RECORDING HOW MANY TIMES THE BUTTON HAS BEEN CLICKED
-    int clickCounter=0;
+    static ArrayList<CourseSession> courselist = new ArrayList<>();
+    static CourseListAdapter adapter;
 
     public static ItemOneStudentFragment newInstance() {
         ItemOneStudentFragment fragment = new ItemOneStudentFragment();
@@ -36,7 +30,6 @@ public class ItemOneStudentFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "on Create START");
         super.onCreate(savedInstanceState);
     }
 
@@ -49,8 +42,7 @@ public class ItemOneStudentFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         btn_search = (Button)view.findViewById(R.id.btn_search);
         ListView lv = (ListView)view.findViewById(R.id.courselist);
-
-        adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,listItems);
+        adapter = new CourseListAdapter(getContext(), R.layout.adapter_view_layout, courselist);
         lv.setAdapter(adapter);
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,30 +50,10 @@ public class ItemOneStudentFragment extends Fragment {
                 startActivity(new Intent(getContext(), SearchSession.class));
             }
         });
-        test(lv);
-
     }
 
-    private void test(ListView lv) {
-        CourseSession cs1 = new CourseSession("uvic","csc110","mike");
-        CourseSession cs2 = new CourseSession("uvic","csc115","jason");
-        CourseSession cs3 = new CourseSession("uvic","csc225","rich");
-        CourseSession cs4 = new CourseSession("uvic","csc226","bird");
-        CourseSession cs5 = new CourseSession("uvic","csc305","zastre");
-        ArrayList<CourseSession> courselist = new ArrayList<>();
-        courselist.add(cs1);
-        courselist.add(cs2);
-        courselist.add(cs3);
-        courselist.add(cs4);
-        courselist.add(cs5);
-
-        CourseListAdapter adapter = new CourseListAdapter(getContext(), R.layout.adapter_view_layout, courselist);
-        lv.setAdapter(adapter);
-    }
-
-    //METHOD WHICH WILL HANDLE DYNAMIC INSERTION
-    public static void addItems(String string) {
-        listItems.add(string);
+    public static void addItems(CourseSession courseSession) {
+        courselist.add(courseSession);
         adapter.notifyDataSetChanged();
     }
 }
