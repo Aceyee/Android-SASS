@@ -4,7 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -207,9 +211,20 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 MainActivity.setRoll("Professor");
             }
             ctx.startActivity(new Intent(ctx, MainActivity.class));
-        }else{
-            alertDialog.setMessage(result);
-            alertDialog.show();
+        }else if(result.contains("Search Success")){
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONArray jsonArr = obj.getJSONArray("Search Success");
+                for (int i = 0; i < jsonArr.length(); i++)
+                {
+                    JSONObject jsonObj = jsonArr.getJSONObject(i);
+                    System.out.println(jsonObj);
+                }
+            } catch (Throwable tx) {
+            }
+            ItemOneStudentFragment.addItems(result);
         }
+        alertDialog.setMessage(result);
+        alertDialog.show();
     }
 }
