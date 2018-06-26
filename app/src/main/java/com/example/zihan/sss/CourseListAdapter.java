@@ -29,6 +29,7 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        final int id = getItem(position).getId();
         final String university = getItem(position).getUniversity();
         final String course = getItem(position).getCourse();
         String professor = getItem(position).getProfessor();
@@ -49,6 +50,7 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Punch.class);
                 intent.putExtra("coursename", course);
+                intent.putExtra("courseid", id);
                 view.getContext().startActivity(intent);
             }
         });

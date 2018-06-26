@@ -219,11 +219,11 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 {
                     JSONObject jsonObj = jsonArr.getJSONObject(i);
                     CourseSession courseSession = new CourseSession(
+                            jsonObj.getInt("id"),
                             jsonObj.getString("university"),
                             jsonObj.getString("course"),
                             jsonObj.getString("professor"));
                     ItemOneStudentFragment.addItems(courseSession);
-                    //System.out.println(jsonObj);
                 }
             } catch (Throwable tx) {
             }

@@ -23,14 +23,9 @@ public class Punch extends AppCompatActivity {
     static TextView tv_course;
 //
 //    String university;
-    String course;
+    private String course;
+    private int id;
 //    String professor;
-//
-//    public Punch(String university, String course, String professor){
-//        this.course = course;
-//        this.university = university;
-//        this.professor = professor;
-//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +34,7 @@ public class Punch extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         if (extra!=null){
             course = extra.getString("coursename");
+            id = extra.getInt("courseid");
         }
         a = (Button) findViewById(R.id.buttonA);
         b = (Button) findViewById(R.id.buttonB);
@@ -47,6 +43,7 @@ public class Punch extends AppCompatActivity {
         e = (Button) findViewById(R.id.buttonE);
         tv_course = (TextView)findViewById(R.id.punch_course);
         tv_course.setText(course);
+
         addListener();
     }
 

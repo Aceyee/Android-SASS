@@ -11,7 +11,7 @@
 
     if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_array($result)){
-            array_push($response, array("university"=>$row[0], "course"=>$row[1], "session"=>$row[2], "professor"=>$row[3]));
+            array_push($response, array("id"=>$row[0], "university"=>$row[1], "course"=>$row[2], "session"=>$row[3], "professor"=>$row[4]));
         }
         echo json_encode(array("Search Success"=>$response));
     }else{
