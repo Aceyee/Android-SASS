@@ -7,43 +7,46 @@ package com.example.zihan.sss;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class Punch extends Fragment {
+public class Punch extends AppCompatActivity {
     Button a;
     Button b;
     Button c;
     Button d;
     Button e;
-    public static Punch newInstance() {
-        Punch fragment = new Punch();
-        return fragment;
-    }
+    static TextView tv_course;
+//
+//    String university;
+    String course;
+//    String professor;
+//
+//    public Punch(String university, String course, String professor){
+//        this.course = course;
+//        this.university = university;
+//        this.professor = professor;
+//    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_item_one_student, container, false);
-    }
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        a = (Button) getView().findViewById(R.id.buttonA);
-        b = (Button) getView().findViewById(R.id.buttonB);
-        c = (Button) getView().findViewById(R.id.buttonC);
-        d = (Button) getView().findViewById(R.id.buttonD);
-        e = (Button) getView().findViewById(R.id.buttonE);
-        initialize();
-    }
-
-    private void initialize() {
+        setContentView(R.layout.punch_layout);
+        Bundle extra = getIntent().getExtras();
+        if (extra!=null){
+            course = extra.getString("coursename");
+        }
+        a = (Button) findViewById(R.id.buttonA);
+        b = (Button) findViewById(R.id.buttonB);
+        c = (Button) findViewById(R.id.buttonC);
+        d = (Button) findViewById(R.id.buttonD);
+        e = (Button) findViewById(R.id.buttonE);
+        tv_course = (TextView)findViewById(R.id.punch_course);
+        tv_course.setText(course);
         addListener();
     }
 
