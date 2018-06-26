@@ -1,15 +1,29 @@
 package com.example.zihan.sss;
 
+import android.content.Context;
+import android.widget.Button;
+
 /**
  * Created by Zihan on 2018/6/25.
  */
-
-public class CourseSession {
+/*
+public class CourseSession extends android.support.v7.widget.AppCompatButton{
     private String university;
     private String course;
     private String professor;
 
-    public CourseSession(String university, String course, String professor){
+
+    public CourseSession(Context context, String university, String course, String professor) {
+        super(context);
+        this.professor=professor;
+        this.course=course;
+        this.university=university;
+    }*/
+public class CourseSession{
+    private String university;
+    private String course;
+    private String professor;
+    public CourseSession(String university, String course, String professor) {
         this.professor=professor;
         this.course=course;
         this.university=university;

@@ -218,7 +218,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 for (int i = 0; i < jsonArr.length(); i++)
                 {
                     JSONObject jsonObj = jsonArr.getJSONObject(i);
-                    CourseSession courseSession = new CourseSession(jsonObj.getString("university"),
+                    CourseSession courseSession = new CourseSession(
+                            jsonObj.getString("university"),
                             jsonObj.getString("course"),
                             jsonObj.getString("professor"));
                     ItemOneStudentFragment.addItems(courseSession);

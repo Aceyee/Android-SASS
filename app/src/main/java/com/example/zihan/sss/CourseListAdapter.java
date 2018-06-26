@@ -1,6 +1,7 @@
 package com.example.zihan.sss;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -28,21 +29,29 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String university = getItem(position).getUniversity();
-        String course = getItem(position).getCourse();
+        final String university = getItem(position).getUniversity();
+        final String course = getItem(position).getCourse();
         String professor = getItem(position).getProfessor();
 
-        CourseSession courseSession = new CourseSession(university,course,professor);
         LayoutInflater inflater = LayoutInflater.from(mcontext);
         convertView = inflater.inflate(mResource,parent,false);
 
         TextView tv_university = (TextView)convertView.findViewById(R.id.list_university);
         TextView tv_professor = (TextView)convertView.findViewById(R.id.list_professor);
-        TextView tv_course = (TextView)convertView.findViewById(R.id.list_course);
+        final TextView tv_course = (TextView)convertView.findViewById(R.id.list_course);
 
         tv_university.setText(university);
         tv_course.setText(course);
         tv_professor.setText(professor);
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Punch.class);
+                intent.putExtra("coursename", course);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         return convertView;
     }
