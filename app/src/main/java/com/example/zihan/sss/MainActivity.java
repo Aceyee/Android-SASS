@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    private static String roll;
+    private static User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.action_item1:
-                                if(roll.equals("Student")) {
+                                if(user.getRoll().equals("Student")) {
                                     selectedFragment = ItemOneStudentFragment.newInstance();
-                                }else if(roll.equals("Professor")){
+                                }else if(user.getRoll().equals("Professor")){
                                     selectedFragment = ItemOneProfessorFragment.newInstance();
                                 }
                                 break;
@@ -44,15 +44,15 @@ public class MainActivity extends AppCompatActivity {
                 });
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(roll.equals("Student")) {
+        if(user.getRoll().equals("Student")) {
             transaction.replace(R.id.frame_layout, ItemOneStudentFragment.newInstance());
-        }else if(roll.equals("Professor")){
+        }else if(user.getRoll().equals("Professor")){
             transaction.replace(R.id.frame_layout, ItemOneProfessorFragment.newInstance());
         }
         transaction.commit();
     }
 
-    public static void setRoll(String roll) {
-        MainActivity.roll = roll;
+    public static void setUser(User user) {
+        MainActivity.user = user;
     }
 }
