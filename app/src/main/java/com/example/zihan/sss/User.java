@@ -78,4 +78,9 @@ public class User {
     public boolean isProfessor(){
         return roll.equals("Professor");
     }
+
+    @Override
+    public String toString() {
+        return username+" "+university+" "+email;
+    }
 }

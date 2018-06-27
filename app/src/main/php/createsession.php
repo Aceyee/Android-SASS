@@ -12,7 +12,7 @@ if(mysqli_query($con, $sql_query_insertCourse)){
     $result = mysqli_query($con, $sql_query_getCourseID);
     $row = mysqli_fetch_array($result);
     $id = $row["id"];
-    $sql_query_CreateSheet = "CREATE TABLE sheet".$id." (courseid INT PRIMARY KEY, university VARCHAR(40), studentname VARCHAR(40), studentID VARCHAR(16), choice VARCHAR(1), punchtime DATE);";
+    $sql_query_CreateSheet = "CREATE TABLE sheet".$id." (courseid INT, university VARCHAR(40), studentname VARCHAR(40), studentNO VARCHAR(16) PRIMARY KEY, choice VARCHAR(1), punchtime DATE);";
     //$sql_query_insertSignup = "insert into signupsheet(id, studentname, studentID) values('$id','aceyee','V00793984');";
     if(mysqli_query($con, $sql_query_CreateSheet)){
         //echo "Sheet Created Insertion Success ".$id;
@@ -20,6 +20,6 @@ if(mysqli_query($con, $sql_query_insertCourse)){
         echo "Failed to Create a Sheet";
     }
 }else{
-    echo "Data insertion error".mysqli_error($con);
+    echo "Data insertion error ".mysqli_error($con);
 }
 ?>
