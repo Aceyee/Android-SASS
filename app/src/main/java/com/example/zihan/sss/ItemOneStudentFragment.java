@@ -25,8 +25,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ItemOneStudentFragment extends Fragment {
+    static User user;
     Button btn_search;
     Button btn_save;
+    static View mview;
     static ArrayList<CourseSession> courselist;
     static CourseListAdapter adapter;
 
@@ -48,8 +50,11 @@ public class ItemOneStudentFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         btn_search = (Button)view.findViewById(R.id.btn_search);
-        btn_save =(Button)view.findViewById(R.id.btn_save);
+        btn_save = (Button)view.findViewById(R.id.btn_save);
+        user = MainActivity.getUser();
+        mview = view;
         loadData();
+        //view.getContext().getSharedPreferences("shared preference", 0).edit().clear().commit();
         ListView lv = (ListView)view.findViewById(R.id.courselist);
         adapter = new CourseListAdapter(getContext(), R.layout.adapter_view_layout, courselist);
         lv.setAdapter(adapter);
@@ -67,19 +72,19 @@ public class ItemOneStudentFragment extends Fragment {
         });
     }
 
-    private void saveData() {
-        SharedPreferences sharedPreferences = getView().getContext().getSharedPreferences("shared preference", Context.MODE_PRIVATE);
+    private static void saveData() {
+        SharedPreferences sharedPreferences = mview.getContext().getSharedPreferences("shared preference", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(courselist);
-        editor.putString("task list", json);
+        editor.putString(user.getUsername(), json);
         editor.apply();
     }
 
     private void loadData(){
         SharedPreferences sharedPreferences = getView().getContext().getSharedPreferences("shared preference", Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list", null);
+        String json = sharedPreferences.getString(user.getUsername(), null);
         Type type = new TypeToken<ArrayList<CourseSession>>() {}.getType();
         courselist = gson.fromJson(json,type);
 
@@ -91,5 +96,6 @@ public class ItemOneStudentFragment extends Fragment {
     public static void addItems(CourseSession courseSession) {
         courselist.add(courseSession);
         adapter.notifyDataSetChanged();
+        saveData();
     }
 }
