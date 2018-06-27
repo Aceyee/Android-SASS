@@ -133,7 +133,11 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     //    String reg_url ="http://www.squareink.xyz/register.php";
         String user_name = params[1];
         String user_pass = params[2];
-        String user_roll = params[3];
+        String user_university = params[3];
+        String user_roll = params[4];
+        String user_email = params[5];
+        String user_studentNO = params[6];
+
         try {
             URL url = new URL(reg_url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -144,7 +148,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS, "UTF-8"));
             String data = URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"+
                     URLEncoder.encode("user_pass","UTF-8")+"="+URLEncoder.encode(user_pass,"UTF-8")+"&"+
-                    URLEncoder.encode("user_roll","UTF-8")+"="+URLEncoder.encode(user_roll,"UTF-8");
+                    URLEncoder.encode("user_university","UTF-8")+"="+URLEncoder.encode(user_university,"UTF-8")+"&"+
+                    URLEncoder.encode("user_roll","UTF-8")+"="+URLEncoder.encode(user_roll,"UTF-8")+"&"+
+                    URLEncoder.encode("user_email","UTF-8")+"="+URLEncoder.encode(user_email,"UTF-8")+"&"+
+                    URLEncoder.encode("user_studentNO","UTF-8")+"="+URLEncoder.encode(user_studentNO,"UTF-8");
             bufferedWriter.write(data);
             bufferedWriter.flush();
             bufferedWriter.close();
@@ -212,7 +219,15 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         }else if(result.contains("Login Success")){
             alertDialog.setMessage(result);
             alertDialog.show();
-            if(result.contains("Student")){
+            String roll = "";
+            User user=null;
+            try {
+                JSONObject obj = new JSONObject(result);
+                user = new User();
+                roll = obj.getString("roll");
+            } catch (Throwable tx) {
+            }
+            if(roll.equals("Student")){
                 MainActivity.setRoll("Student");
             }else{
                 MainActivity.setRoll("Professor");

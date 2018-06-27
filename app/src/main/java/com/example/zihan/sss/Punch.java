@@ -48,6 +48,7 @@ public class Punch extends AppCompatActivity {
     }
 
     private void addListener() {
+        boolean clicked = false;
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

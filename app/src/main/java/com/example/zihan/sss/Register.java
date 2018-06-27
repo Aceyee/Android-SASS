@@ -15,8 +15,8 @@ import android.widget.Toast;
  */
 
 public class Register extends Activity {
-    EditText ET_USER_NAME, ET_USER_PASS;
-    String user_name, user_pass, user_roll;
+    EditText ET_USER_NAME, ET_USER_PASS, ET_USER_UNIVERSITY, ET_USER_STUDENTNO, ET_USER_EMAIL;
+    String user_name, user_pass, user_roll, user_university, user_studentNO, user_email;
     Spinner spinner;
     ArrayAdapter<CharSequence> arrayAdapter;
     @Override
@@ -25,6 +25,9 @@ public class Register extends Activity {
         setContentView(R.layout.register_layout);
         ET_USER_NAME=(EditText)findViewById(R.id.new_user_name);
         ET_USER_PASS=(EditText)findViewById(R.id.new_user_pass);
+        ET_USER_UNIVERSITY=(EditText)findViewById(R.id.new_user_university);
+        ET_USER_STUDENTNO=(EditText)findViewById(R.id.new_user_studentNO);
+        ET_USER_EMAIL=(EditText)findViewById(R.id.new_user_email);
         spinner = (Spinner)findViewById(R.id.spinner);
         arrayAdapter = ArrayAdapter.createFromResource(this, R.array.role_name, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -46,10 +49,13 @@ public class Register extends Activity {
     public void userReg(View view){
         user_name=ET_USER_NAME.getText().toString();
         user_pass=ET_USER_PASS.getText().toString();
-        //System.out.println(user_roll);
+        user_university=ET_USER_UNIVERSITY.getText().toString();
+        user_studentNO=ET_USER_STUDENTNO.getText().toString();
+        user_email=ET_USER_EMAIL.getText().toString();
         String method = "register";
         BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(method, user_name, user_pass, user_roll);
+        backgroundTask.execute(method, user_name, user_pass,
+                user_university, user_roll, user_email, user_studentNO);
         finish();
     }
 }
