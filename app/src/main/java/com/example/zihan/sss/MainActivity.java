@@ -11,6 +11,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private static String roll;
+    private static User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,4 +56,13 @@ public class MainActivity extends AppCompatActivity {
     public static void setRoll(String roll) {
         MainActivity.roll = roll;
     }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static void setUser(User user) {
+        MainActivity.user = user;
+    }
+
 }

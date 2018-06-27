@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -223,10 +224,17 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             User user=null;
             try {
                 JSONObject obj = new JSONObject(result);
-                user = new User();
-                roll = obj.getString("roll");
-            } catch (Throwable tx) {
+                JSONArray jsonArr = obj.getJSONArray("Login Success");
+                JSONObject jsonObj = jsonArr.getJSONObject(0);
+                user = new User(jsonObj.getString("university"),jsonObj.getString("username"),
+                        jsonObj.getString("passwd"),jsonObj.getString("roll"),
+                        jsonObj.getString("email"),jsonObj.getString("studentNO"));
+                MainActivity.setUser(user);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            roll = MainActivity.getUser().getRoll();
+
             if(roll.equals("Student")){
                 MainActivity.setRoll("Student");
             }else{
