@@ -212,7 +212,13 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         }else if(result.contains("Login Success")){
             alertDialog.setMessage(result);
             alertDialog.show();
-            if(result.contains("Student")){
+            String roll = "";
+            try {
+                JSONObject obj = new JSONObject(result);
+                roll = obj.getString("roll");
+            } catch (Throwable tx) {
+            }
+            if(roll.equals("Student")){
                 MainActivity.setRoll("Student");
             }else{
                 MainActivity.setRoll("Professor");
