@@ -20,10 +20,12 @@ public class CourseSession extends android.support.v7.widget.AppCompatButton{
         this.university=university;
     }*/
 public class CourseSession{
+    private int id;
     private String university;
     private String course;
     private String professor;
-    public CourseSession(String university, String course, String professor) {
+    public CourseSession(int id, String university, String course, String professor) {
+        this.id =id;
         this.professor=professor;
         this.course=course;
         this.university=university;
@@ -51,5 +53,9 @@ public class CourseSession{
 
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    public int getId() {
+        return id;
     }
 }

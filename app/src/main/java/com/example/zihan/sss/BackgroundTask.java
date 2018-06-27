@@ -182,8 +182,15 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             bufferedWriter.close();
             OS.close();
             InputStream IS = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(IS, "UTF-8"));
+            String response = "";
+            String line ="";
+            while ((line=bufferedReader.readLine())!=null){
+                response +=line;
+            }
+            bufferedReader.close();
             IS.close();
-            return "Session Created";
+            return response;
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return "Debug: fail 1";
@@ -219,16 +226,19 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 {
                     JSONObject jsonObj = jsonArr.getJSONObject(i);
                     CourseSession courseSession = new CourseSession(
+                            jsonObj.getInt("id"),
                             jsonObj.getString("university"),
                             jsonObj.getString("course"),
                             jsonObj.getString("professor"));
                     ItemOneStudentFragment.addItems(courseSession);
-                    //System.out.println(jsonObj);
                 }
             } catch (Throwable tx) {
             }
+        }else {
+            System.out.println(result);
+            //alertDialog.setMessage(result);
+            //alertDialog.show();
+            //alertDialog.dismiss();
         }
-        alertDialog.setMessage(result);
-        alertDialog.show();
     }
 }
