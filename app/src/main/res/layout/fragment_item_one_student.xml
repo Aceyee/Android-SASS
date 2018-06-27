@@ -9,12 +9,23 @@
         android:layout_height="fill_parent"
         android:drawSelectorOnTop="false"
         />
-    <Button
-        android:id="@+id/btn_search"
+    <LinearLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:text="Search a Course Session"
-        />
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="Search a Course Session"/>
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Save" />
+    </LinearLayout>
+
 
 </RelativeLayout>
