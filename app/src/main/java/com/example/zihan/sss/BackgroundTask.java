@@ -220,25 +220,16 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         }else if(result.contains("Login Success")){
             alertDialog.setMessage(result);
             alertDialog.show();
-            String roll = "";
-            User user=null;
             try {
                 JSONObject obj = new JSONObject(result);
                 JSONArray jsonArr = obj.getJSONArray("Login Success");
                 JSONObject jsonObj = jsonArr.getJSONObject(0);
-                user = new User(jsonObj.getString("university"),jsonObj.getString("username"),
+                User user= new User(jsonObj.getString("university"),jsonObj.getString("username"),
                         jsonObj.getString("passwd"),jsonObj.getString("roll"),
                         jsonObj.getString("email"),jsonObj.getString("studentNO"));
                 MainActivity.setUser(user);
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
-            roll = MainActivity.getUser().getRoll();
-
-            if(roll.equals("Student")){
-                MainActivity.setRoll("Student");
-            }else{
-                MainActivity.setRoll("Professor");
             }
             ctx.startActivity(new Intent(ctx, MainActivity.class));
         }else if(result.contains("Search Success")){
@@ -258,10 +249,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             } catch (Throwable tx) {
             }
         }else {
-            System.out.println(result);
-            //alertDialog.setMessage(result);
-            //alertDialog.show();
-            //alertDialog.dismiss();
+            //System.out.println(result);
+            alertDialog.setMessage(result);
+            alertDialog.show();
+            alertDialog.dismiss();
         }
     }
 }
