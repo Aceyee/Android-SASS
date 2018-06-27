@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class ItemOneProfessorFragment extends Fragment {
+    private User user;
     Button btn_create;
     public static ItemOneProfessorFragment newInstance() {
         ItemOneProfessorFragment fragment = new ItemOneProfessorFragment();
@@ -32,6 +33,7 @@ public class ItemOneProfessorFragment extends Fragment {
     }
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        user=MainActivity.getUser();
         btn_create = (Button)view.findViewById(R.id.btn_create);
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
