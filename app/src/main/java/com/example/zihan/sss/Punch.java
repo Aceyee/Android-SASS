@@ -53,31 +53,39 @@ public class Punch extends AppCompatActivity {
             public void onClick(View view) {
                 String method = "punch";
                 BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
-                backgroundTask.execute(method, "A", user.getUniversity(), user.getStudentNO(), user.getUsername());
+                backgroundTask.execute(method, id+"", "A", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("B被点击了");
+                String method = "punch";
+                BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
+                backgroundTask.execute(method, id+"", "B", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
         c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("C被点击了");
+                String method = "punch";
+                BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
+                backgroundTask.execute(method, id+"", "C", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
         d.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("D被点击了");
+                String method = "punch";
+                BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
+                backgroundTask.execute(method, id+"", "D", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
         e.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("E被点击了");
+                String method = "punch";
+                BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
+                backgroundTask.execute(method, id+"", "E", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
     }

@@ -56,7 +56,48 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundPunch(String[] params) {
-        return null;
+        String punch_url = "http://10.0.2.2/punch.php";
+        String punch_courseid=params[1];
+        String punch_choice = params[2];
+        String punch_university = params[3];
+        String punch_studentNO = params[4];
+        String punch_username = params[5];
+
+        try {
+            URL url = new URL(punch_url);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String data =
+                    URLEncoder.encode("courseid", "UTF-8")+"="+URLEncoder.encode(punch_courseid,"UTF-8")+"&"+
+                    URLEncoder.encode("choice", "UTF-8")+"="+URLEncoder.encode(punch_choice,"UTF-8")+"&"+
+                    URLEncoder.encode("university", "UTF-8")+"="+URLEncoder.encode(punch_university,"UTF-8")+"&"+
+                    URLEncoder.encode("studentNO", "UTF-8")+"="+URLEncoder.encode(punch_studentNO,"UTF-8")+"&"+
+                    URLEncoder.encode("username", "UTF-8")+"="+URLEncoder.encode(punch_username,"UTF-8");
+            bufferedWriter.write(data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            String response = "";
+            String line ="";
+            while ((line=bufferedReader.readLine())!=null){
+                response +=line;
+            }
+            bufferedReader.close();
+            inputStream.close();
+            return response;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "punch failed";
     }
 
     private String BackgroundSearchSession(String[] params) {
@@ -254,10 +295,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             } catch (Throwable tx) {
             }
         }else {
-            //System.out.println(result);
-            alertDialog.setMessage(result);
-            alertDialog.show();
-            alertDialog.dismiss();
+            System.out.println(result);
+            //alertDialog.setMessage(result);
+            //alertDialog.show();
+            //alertDialog.dismiss();
         }
     }
 }

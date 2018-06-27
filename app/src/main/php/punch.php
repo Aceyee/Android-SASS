@@ -2,24 +2,31 @@
 require "init2.php";
 
 $name = "SSS";
+$courseid = $_POST["courseid"];
+$choice = $_POST["choice"];
 $university = $_POST["university"];
-$course = $_POST["course"];
-$professor = $_POST["professor"];
+$studentNO = $_POST["studentNO"];
+$username = $_POST["username"];
 
-$sql_query_insertCourse = "insert into session(university, course, professor) values('$university','$course','$professor');";
-$sql_query_getCourseID = "SELECT id from session WHERE university like '$university' and course like '$course' and professor like '$professor';";
-if(mysqli_query($con, $sql_query_insertCourse)){
-    $result = mysqli_query($con, $sql_query_getCourseID);
-    $row = mysqli_fetch_array($result);
-    $id = $row["id"];
-    $sql_query_CreateSheet = "CREATE TABLE sheet".$id." (courseid INT PRIMARY KEY, university VARCHAR(40), studentname VARCHAR(40), studentID VARCHAR(16), choice VARCHAR(1), punchtime DATE);";
-    //$sql_query_insertSignup = "insert into signupsheet(id, studentname, studentID) values('$id','aceyee','V00793984');";
-    if(mysqli_query($con, $sql_query_CreateSheet)){
-        //echo "Sheet Created Insertion Success ".$id;
-    }else{
-        echo "Failed to Create a Sheet";
-    }
+$sql_query_getStudentNO = "SELECT studentNO from sheet".$courseid." WHERE studentNO like '$studentNO';";
+
+$result_getStudentNO = mysqli_query($con, $sql_query_getStudentNO);
+if(mysqli_num_rows($result_username)>0){
+    echo "data exist";
 }else{
-    echo "Data insertion error".mysqli_error($con);
+    //echo "insert new data";
+    $sql_query_insertSignup = "INSERT into sheet".$courseid."(courseid, university, studentname, studentNO, choice) values('$courseid','$university','$username','$studentNO','$choice');";
+    if(mysqli_query($con, $sql_query_insertSignup)){
+        echo "insertion success";
+    }else if(strpos(mysqli_error($con), 'Duplicate')!==false){
+        $sql = "UPDATE sheet".$courseid." SET choice='$choice' WHERE studentNO='$studentNO'";
+        if ($con->query($sql) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $con->error;
+        }
+    }else{
+        echo "Data insertion error ".mysqli_error($con);
+    }
 }
 ?>
