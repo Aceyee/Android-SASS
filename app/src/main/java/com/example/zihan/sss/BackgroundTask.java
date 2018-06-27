@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -50,8 +49,14 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             return BackgroundCreateSession(params);
         }else if(method.equals("search")){
             return BackgroundSearchSession(params);
+        }else if(method.equals("punch")){
+            return BackgroundPunch(params);
         }
         return "no condition met";
+    }
+
+    private String BackgroundPunch(String[] params) {
+        return null;
     }
 
     private String BackgroundSearchSession(String[] params) {
@@ -224,8 +229,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 JSONObject obj = new JSONObject(result);
                 JSONArray jsonArr = obj.getJSONArray("Login Success");
                 JSONObject jsonObj = jsonArr.getJSONObject(0);
-                User user= new User(jsonObj.getString("university"),jsonObj.getString("username"),
-                        jsonObj.getString("passwd"),jsonObj.getString("roll"),
+                User user= new User(jsonObj.getString("username"), jsonObj.getString("passwd"),
+                        jsonObj.getString("university"),jsonObj.getString("roll"),
                         jsonObj.getString("email"),jsonObj.getString("studentNO"));
                 MainActivity.setUser(user);
             } catch (JSONException e) {

@@ -21,11 +21,9 @@ public class Punch extends AppCompatActivity {
     Button d;
     Button e;
     static TextView tv_course;
-//
-//    String university;
     private String course;
     private int id;
-//    String professor;
+    private User user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +34,7 @@ public class Punch extends AppCompatActivity {
             course = extra.getString("coursename");
             id = extra.getInt("courseid");
         }
+        user=MainActivity.getUser();
         a = (Button) findViewById(R.id.buttonA);
         b = (Button) findViewById(R.id.buttonB);
         c = (Button) findViewById(R.id.buttonC);
@@ -43,7 +42,7 @@ public class Punch extends AppCompatActivity {
         e = (Button) findViewById(R.id.buttonE);
         tv_course = (TextView)findViewById(R.id.punch_course);
         tv_course.setText(course);
-
+        //System.out.println(user.toString());
         addListener();
     }
 
@@ -52,7 +51,9 @@ public class Punch extends AppCompatActivity {
         a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("A被点击了");
+                String method = "punch";
+                BackgroundTask backgroundTask = new BackgroundTask(view.getContext());
+                backgroundTask.execute(method, "A", user.getUniversity(), user.getStudentNO(), user.getUsername());
             }
         });
         b.setOnClickListener(new View.OnClickListener() {

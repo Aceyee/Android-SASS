@@ -52,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    public static User getUser() {
+        return user;
+    }
+
     public static void setUser(User user) {
         MainActivity.user = user;
     }
