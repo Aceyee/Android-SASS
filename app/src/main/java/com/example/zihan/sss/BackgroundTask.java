@@ -294,7 +294,23 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 }
             } catch (Throwable tx) {
             }
-        }else {
+        }else if(result.contains("Create Success")) {
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONArray jsonArr = obj.getJSONArray("Create Success");
+                for (int i = 0; i < jsonArr.length(); i++)
+                {
+                    JSONObject jsonObj = jsonArr.getJSONObject(i);
+                    CourseSession courseSession = new CourseSession(
+                            jsonObj.getInt("id"),
+                            jsonObj.getString("university"),
+                            jsonObj.getString("course"),
+                            jsonObj.getString("professor"));
+                    ItemOneProfessorFragment.addItems(courseSession);
+                }
+            } catch (Throwable tx) {
+            }
+        }else{
             System.out.println(result);
             //alertDialog.setMessage(result);
             //alertDialog.show();

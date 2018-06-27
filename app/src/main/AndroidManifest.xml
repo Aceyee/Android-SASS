@@ -33,6 +33,7 @@
         <activity android:name=".SearchSession">
         </activity>
         <activity android:name=".Punch" />
+        <activity android:name=".DisplayResult" />
     </application>
 
 </manifest>
