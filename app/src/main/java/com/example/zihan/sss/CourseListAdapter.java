@@ -45,15 +45,26 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
         tv_course.setText(course);
         tv_professor.setText(professor);
 
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Punch.class);
-                intent.putExtra("coursename", course);
-                intent.putExtra("courseid", id);
-                view.getContext().startActivity(intent);
-            }
-        });
+        if(MainActivity.getUser().getRoll().equals("Student")) {
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), Punch.class);
+                    intent.putExtra("coursename", course);
+                    intent.putExtra("courseid", id);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }else{
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), DisplayResult.class);
+                    intent.putExtra("courseid", id);
+                    view.getContext().startActivity(intent);
+                }
+            });
+        }
 
         return convertView;
     }

@@ -51,8 +51,46 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             return BackgroundSearchSession(params);
         }else if(method.equals("punch")){
             return BackgroundPunch(params);
+        }else if(method.equals("display")){
+            return BackgroundDisplay(params);
         }
         return "no condition met";
+    }
+
+    private String BackgroundDisplay(String []params) {
+        String display_url = "http://10.0.2.2/display.php";
+        String display_courseid=params[1];
+
+        try {
+            URL url = new URL(display_url);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setDoInput(true);
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            String data = URLEncoder.encode("courseid", "UTF-8")+"="+URLEncoder.encode(display_courseid,"UTF-8");
+            bufferedWriter.write(data);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+            outputStream.close();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            String response = "";
+            String line ="";
+            while ((line=bufferedReader.readLine())!=null){
+                response +=line;
+            }
+            bufferedReader.close();
+            inputStream.close();
+            return response;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private String BackgroundPunch(String[] params) {
@@ -294,7 +332,38 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                 }
             } catch (Throwable tx) {
             }
-        }else {
+        }else if(result.contains("Create Success")) {
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONArray jsonArr = obj.getJSONArray("Create Success");
+                for (int i = 0; i < jsonArr.length(); i++)
+                {
+                    JSONObject jsonObj = jsonArr.getJSONObject(i);
+                    CourseSession courseSession = new CourseSession(
+                            jsonObj.getInt("id"),
+                            jsonObj.getString("university"),
+                            jsonObj.getString("course"),
+                            jsonObj.getString("professor"));
+                    ItemOneProfessorFragment.addItems(courseSession);
+                }
+            } catch (Throwable tx) {
+            }
+        }else if(result.contains("Display Result")){
+            //System.out.println(result);
+            try {
+                JSONObject obj = new JSONObject(result);
+                JSONArray jsonArr = obj.getJSONArray("Display Result");
+                for (int i = 0; i < jsonArr.length(); i++)
+                {
+                    JSONObject jsonObj = jsonArr.getJSONObject(i);
+                    int num = jsonObj.getInt("num_punched");
+                    DisplayResult.setNum(num);
+                }
+            } catch (Throwable tx) {
+                tx.printStackTrace();
+            }
+        }
+        else{
             System.out.println(result);
             //alertDialog.setMessage(result);
             //alertDialog.show();

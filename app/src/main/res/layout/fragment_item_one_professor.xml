@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.zihan.sss.ItemOneProfessorFragment">
 
+    <ListView
+        android:id="@+id/courselist_prof"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:drawSelectorOnTop="false"
+        />
     <Button
         android:id="@+id/btn_create"
         android:layout_width="match_parent"

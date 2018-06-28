@@ -17,7 +17,12 @@ if(mysqli_num_rows($result_username)>0){
     //echo "insert new data";
     $sql_query_insertSignup = "INSERT into sheet".$courseid."(courseid, university, studentname, studentNO, choice) values('$courseid','$university','$username','$studentNO','$choice');";
     if(mysqli_query($con, $sql_query_insertSignup)){
-        echo "insertion success";
+        $sql_getNum = "SELECT * from sheet".$courseid.";";
+        $result_getNum = mysqli_query($con, $sql_getNum);
+        $num = mysqli_num_rows($result_getNum);
+        $response = array();
+        array_push($response,array("num_punched"=>$num));
+        echo json_encode(array("Display Result"=>$response));
     }else if(strpos(mysqli_error($con), 'Duplicate')!==false){
         $sql = "UPDATE sheet".$courseid." SET choice='$choice' WHERE studentNO='$studentNO'";
         if ($con->query($sql) === TRUE) {
