@@ -60,6 +60,7 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(), DisplayResult.class);
+                    intent.putExtra("courseid", id);
                     view.getContext().startActivity(intent);
                 }
             });
