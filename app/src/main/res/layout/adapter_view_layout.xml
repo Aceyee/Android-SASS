@@ -13,20 +13,24 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/list_course"
-        android:layout_weight="66.6"/>
+        android:layout_weight="60"
+        android:textSize="25dp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="33.3">
+        android:layout_weight="40">
 
         <TextView
             android:gravity="center"
             android:text="TextView2"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/list_university"/>
+            android:id="@+id/list_university"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:gravity="center"
@@ -34,7 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:id="@+id/list_professor"
-            android:layout_below="@+id/list_university"/>
+            android:layout_below="@+id/list_university"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 </LinearLayout>
