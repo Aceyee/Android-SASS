@@ -32,8 +32,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     BackgroundTask(Context ctx){
         this.ctx=ctx;
     }
-    String MODE = "local";
-    //String MODE = "app";
+    //String MODE = "local";
+    String MODE = "APP";
     String url;
     @Override
     protected void onPreExecute() {
@@ -45,7 +45,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String method =params[0];
         if(MODE.equals("APP")){
-            url = "http://www.squareink.xyz/";
+            url = "http://www.squareink.xyz/php/";
         }else{
             url = "http://10.0.2.2/";
         }
@@ -313,6 +313,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 //            alertDialog.setMessage(result);
 //            alertDialog.show();
             try {
+//                System.out.println(result);
                 JSONObject obj = new JSONObject(result);
                 JSONArray jsonArr = obj.getJSONArray("Login Success");
                 JSONObject jsonObj = jsonArr.getJSONObject(0);
