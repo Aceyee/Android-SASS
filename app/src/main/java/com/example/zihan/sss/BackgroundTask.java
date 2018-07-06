@@ -32,8 +32,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     BackgroundTask(Context ctx){
         this.ctx=ctx;
     }
-    //String MODE = "local";
-    String MODE = "APP";
+    String MODE = "local";
+    //String MODE = "APP";
     String url;
     @Override
     protected void onPreExecute() {
@@ -47,7 +47,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         if(MODE.equals("APP")){
             url = "http://www.squareink.xyz/php/";
         }else{
-            url = "http://10.0.2.2/";
+            url = "http://10.0.2.2/php/";
         }
         if(method.equals("register")){
             return BackgroundRegister(params);
@@ -93,6 +93,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             }
             bufferedReader.close();
             inputStream.close();
+            System.out.println(response);
             return response;
         } catch (MalformedURLException e) {
             e.printStackTrace();

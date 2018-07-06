@@ -29,22 +29,26 @@ public class DisplayResult extends AppCompatActivity{
         }
         tv_number = (TextView) findViewById(R.id.result_number);
         tv_number.setText(num+"");
-        String method = "display";
-        BackgroundTask backgroundTask = new BackgroundTask(ctx);
-        backgroundTask.execute(method, id+"");
-        Timer timer = new Timer ();
-        TimerTask secondTask = new TimerTask () {
-            @Override
-            public void run () {
 
-                //  finish();
+        Timer timer = new Timer ();
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String method = "display";
+                        BackgroundTask backgroundTask = new BackgroundTask(ctx);
+                        backgroundTask.execute(method, id+"");
+                    }
+                });
             }
-        };
-        timer.schedule (secondTask, 0, 1000);
+        },0, 1000);
     }
 
     public static void setNum(int num) {
-        DisplayResult.num = num;
+        //DisplayResult.num = MainActivity.getNum_punch();
         tv_number.setText(num+"");
     }
 }
