@@ -75,6 +75,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
+
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
             String data = URLEncoder.encode("courseid", "UTF-8")+"="+URLEncoder.encode(display_courseid,"UTF-8");
@@ -183,6 +184,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
     private String BackgroundLogin(String[] params) {
         String login_url = url+"login.php";
+        String response = "";
 //        String login_url = "http://www.squareink.xyz/login.php";
 
         String login_name = params[1];
@@ -204,7 +206,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            String response = "";
+
             String line ="";
             while ((line=bufferedReader.readLine())!=null){
                 response +=line;
@@ -217,7 +219,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Login Fail";
+        return response;
     }
 
     private String BackgroundRegister(String[] params) {
