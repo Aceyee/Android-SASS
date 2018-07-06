@@ -48,7 +48,6 @@ public class DisplayResult extends AppCompatActivity{
     }
 
     public static void setNum(int num) {
-        //DisplayResult.num = MainActivity.getNum_punch();
         tv_number.setText(num+"");
     }
 }

@@ -11,7 +11,6 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private static User user;
-    private static int num_punch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +58,5 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setUser(User user) {
         MainActivity.user = user;
-    }
-
-    public static int getNum_punch() {
-        return num_punch;
-    }
-
-    public static void setNum_punch(int num_punch) {
-        MainActivity.num_punch = num_punch;
     }
 }

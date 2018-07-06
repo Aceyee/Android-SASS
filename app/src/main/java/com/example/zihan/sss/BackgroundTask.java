@@ -32,8 +32,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     BackgroundTask(Context ctx){
         this.ctx=ctx;
     }
-    String MODE = "local";
-    //String MODE = "APP";
+    //String MODE = "local";
+    String MODE = "APP";
     String url;
     @Override
     protected void onPreExecute() {
@@ -93,7 +93,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             }
             bufferedReader.close();
             inputStream.close();
-            System.out.println(response);
+//            System.out.println(response);
             return response;
         } catch (MalformedURLException e) {
             e.printStackTrace();
