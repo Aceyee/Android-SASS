@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "536457184874",
+    "firebase_url": "https://ssas-e97a0.firebaseio.com",
+    "project_id": "ssas-e97a0",
+    "storage_bucket": "ssas-e97a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536457184874:android:4bfc4dd7c91f6403",
+        "android_client_info": {
+          "package_name": "com.example.zihan.sss"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "536457184874-o57b1fsatnstrt350gnfr25ks45dhqr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmPBtiLLTwbE-D6cGrNinJv8CkeNZDC74"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
