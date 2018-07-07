@@ -1,19 +1,18 @@
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 /**
  * Created by Zihan on 2018/5/5.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class ItemTwoFragment extends Fragment {
-    public static ItemTwoFragment newInstance() {
-        ItemTwoFragment fragment = new ItemTwoFragment();
+public class ItemFourFragment extends Fragment {
+    public static ItemFourFragment newInstance() {
+        ItemFourFragment fragment = new ItemFourFragment();
         return fragment;
     }
 

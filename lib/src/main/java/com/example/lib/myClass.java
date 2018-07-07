@@ -1,4 +1,4 @@
-package com.example.lib;
+package com.squareink.lib;
 
 public class myClass {
 }

@@ -1,4 +1,4 @@
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -15,12 +15,12 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class squareinkInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.zihan.sss", appContext.getPackageName());
+        assertEquals("com.squareink.zihan.sss", appContext.getPackageName());
     }
 }

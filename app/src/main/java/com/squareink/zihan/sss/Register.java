@@ -1,4 +1,4 @@
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 import android.app.Activity;
 import android.os.Bundle;

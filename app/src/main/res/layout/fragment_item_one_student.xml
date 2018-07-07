@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zihan.sss.ItemOneStudentFragment">
+    tools:context="com.squareink.zihan.sss.ItemOneStudentFragment">
     <ListView
         android:id="@+id/courselist"
         android:layout_width="fill_parent"

@@ -1,5 +1,5 @@
 /*
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
