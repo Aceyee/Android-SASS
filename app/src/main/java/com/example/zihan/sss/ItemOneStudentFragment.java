@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class ItemOneStudentFragment extends Fragment {
     static User user;
     Button btn_search;
-    Button btn_save;
+    Button btn_clear;
     static View mview;
     static ArrayList<CourseSession> courselist;
     static CourseListAdapter adapter;
@@ -50,11 +50,10 @@ public class ItemOneStudentFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         btn_search = (Button)view.findViewById(R.id.btn_search);
-        btn_save = (Button)view.findViewById(R.id.btn_save);
+        btn_clear = (Button)view.findViewById(R.id.btn_clear);
         user = MainActivity.getUser();
         mview = view;
         loadData();
-        //view.getContext().getSharedPreferences("shared preference", 0).edit().clear().commit();
         ListView lv = (ListView)view.findViewById(R.id.courselist);
         adapter = new CourseListAdapter(getContext(), R.layout.adapter_view_layout, courselist);
         lv.setAdapter(adapter);
@@ -64,10 +63,10 @@ public class ItemOneStudentFragment extends Fragment {
                 startActivity(new Intent(getContext(), SearchSession.class));
             }
         });
-        btn_save.setOnClickListener(new View.OnClickListener() {
+        btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveData();
+                clearHistory();
             }
         });
     }
@@ -97,5 +96,10 @@ public class ItemOneStudentFragment extends Fragment {
         courselist.add(courseSession);
         adapter.notifyDataSetChanged();
         saveData();
+    }
+
+    private void clearHistory(){
+        mview.getContext().getSharedPreferences("shared preference", 0).edit().clear().commit();
+        loadData();
     }
 }

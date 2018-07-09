@@ -32,15 +32,23 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     BackgroundTask(Context ctx){
         this.ctx=ctx;
     }
+    //String MODE = "local";
+    String MODE = "APP";
+    String url;
     @Override
     protected void onPreExecute() {
-        alertDialog = new AlertDialog.Builder(ctx).create();
-        alertDialog.setTitle("Login Information");
+//        alertDialog = new AlertDialog.Builder(ctx).create();
+//        alertDialog.setTitle("Login Information");
     }
 
     @Override
     protected String doInBackground(String... params) {
         String method =params[0];
+        if(MODE.equals("APP")){
+            url = "http://www.squareink.xyz/php/";
+        }else{
+            url = "http://10.0.2.2/php/";
+        }
         if(method.equals("register")){
             return BackgroundRegister(params);
         }else if(method.equals("login")){
@@ -58,7 +66,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundDisplay(String []params) {
-        String display_url = "http://10.0.2.2/display.php";
+        String display_url = url+"display.php";
         String display_courseid=params[1];
 
         try {
@@ -67,6 +75,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
+
             OutputStream outputStream = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
             String data = URLEncoder.encode("courseid", "UTF-8")+"="+URLEncoder.encode(display_courseid,"UTF-8");
@@ -84,6 +93,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             }
             bufferedReader.close();
             inputStream.close();
+//            System.out.println(response);
             return response;
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -94,7 +104,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundPunch(String[] params) {
-        String punch_url = "http://10.0.2.2/punch.php";
+        String punch_url = url+"punch.php";
         String punch_courseid=params[1];
         String punch_choice = params[2];
         String punch_university = params[3];
@@ -139,7 +149,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundSearchSession(String[] params) {
-        String search_url = "http://10.0.2.2/searchsession.php";
+        String search_url = url+"searchsession.php";
         String search_input = params[1];
         try {
             URL url = new URL(search_url);
@@ -174,7 +184,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundLogin(String[] params) {
-        String login_url = "http://10.0.2.2/login.php";
+        String login_url = url+"login.php";
+        String response = "";
 //        String login_url = "http://www.squareink.xyz/login.php";
 
         String login_name = params[1];
@@ -196,7 +207,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-            String response = "";
+
             String line ="";
             while ((line=bufferedReader.readLine())!=null){
                 response +=line;
@@ -209,12 +220,12 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Login Fail";
+        return response;
     }
 
     private String BackgroundRegister(String[] params) {
         /* According to Emulator Networking IP 10.0.2.2 should be used instead of localhost/127.0.0.1. */
-        String reg_url = "http://10.0.2.2/register.php";
+        String reg_url = url+"register.php";
     //    String reg_url ="http://www.squareink.xyz/register.php";
         String user_name = params[1];
         String user_pass = params[2];
@@ -254,7 +265,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     }
 
     private String BackgroundCreateSession(String[] params){
-        String createSession_url = "http://10.0.2.2/createsession.php";
+        String createSession_url = url+"createsession.php";
         //String reg_url ="http://www.squareink.xyz/register.php";
         String university = params[1];
         String coursename = params[2];
@@ -302,9 +313,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         if(result.equals("Registration Success")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
         }else if(result.contains("Login Success")){
-            alertDialog.setMessage(result);
-            alertDialog.show();
+//            alertDialog.setMessage(result);
+//            alertDialog.show();
             try {
+//                System.out.println(result);
                 JSONObject obj = new JSONObject(result);
                 JSONArray jsonArr = obj.getJSONArray("Login Success");
                 JSONObject jsonObj = jsonArr.getJSONObject(0);

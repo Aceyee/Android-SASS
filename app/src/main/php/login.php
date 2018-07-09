@@ -1,8 +1,6 @@
 <?php
 require "init.php";
 
-    #$user_name = "yezihan";
-    #$user_pass = "yezihan123";
     $user_name = $_POST["login_name"];
     $user_pass = $_POST["login_pass"];
 

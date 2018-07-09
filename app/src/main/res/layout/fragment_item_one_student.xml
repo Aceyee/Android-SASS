@@ -21,10 +21,10 @@
             android:layout_height="100dp"
             android:text="Search a Course Session"/>
         <Button
-            android:id="@+id/btn_save"
+            android:id="@+id/btn_clear"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="Save" />
+            android:text="Clear History" />
     </LinearLayout>
 
 

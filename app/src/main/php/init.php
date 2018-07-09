@@ -1,8 +1,6 @@
 <?php
-    //$mysql_user="aceyee";
-    //$db_name="yzh_user_login";
-    $db_name="userlogin";
-    $mysql_user="root";
+    $mysql_user="aceyee";
+    $db_name="yzh_user_login";
     $mysql_pass="Yzh1028#";
     $server_name="localhost";
 
