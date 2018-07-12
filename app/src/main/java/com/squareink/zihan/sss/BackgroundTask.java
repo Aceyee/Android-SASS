@@ -29,16 +29,16 @@ import java.net.URLEncoder;
 public class BackgroundTask extends AsyncTask<String, Void, String> {
     AlertDialog alertDialog;
     Context ctx;
-    BackgroundTask(Context ctx){
-        this.ctx=ctx;
-    }
+
     //String MODE = "local";
     String MODE = "APP";
     String url;
+    BackgroundTask(Context ctx){
+        this.ctx=ctx;
+    }
     @Override
     protected void onPreExecute() {
-//        alertDialog = new AlertDialog.Builder(ctx).create();
-//        alertDialog.setTitle("Login Information");
+        alertDialog = new AlertDialog.Builder(ctx).create();
     }
 
     @Override
@@ -253,8 +253,15 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             bufferedWriter.close();
             OS.close();
             InputStream IS = httpURLConnection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(IS, "UTF-8"));
+            String response = "";
+            String line ="";
+            while ((line=bufferedReader.readLine())!=null){
+                response +=line;
+            }
+            bufferedReader.close();
             IS.close();
-            return "Registration Success";
+            return response;
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return "Debug: fail 1";
@@ -313,10 +320,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         if(result.equals("Registration Success")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
         }else if(result.contains("Login Success")){
-//            alertDialog.setMessage(result);
-//            alertDialog.show();
             try {
-//                System.out.println(result);
                 JSONObject obj = new JSONObject(result);
                 JSONArray jsonArr = obj.getJSONArray("Login Success");
                 JSONObject jsonObj = jsonArr.getJSONObject(0);
@@ -324,6 +328,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
                         jsonObj.getString("university"),jsonObj.getString("roll"),
                         jsonObj.getString("email"),jsonObj.getString("studentNO"));
                 MainActivity.setUser(user);
+                alertDialog.setMessage("Welcome! "+user.getUsername());
+                alertDialog.show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -376,10 +382,9 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
             }
         }
         else{
-            System.out.println(result);
-            //alertDialog.setMessage(result);
-            //alertDialog.show();
-            //alertDialog.dismiss();
+            //System.out.println(result);
+            alertDialog.setMessage(result);
+            alertDialog.show();
         }
     }
 }
