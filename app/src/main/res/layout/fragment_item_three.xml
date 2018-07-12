@@ -1,22 +1,67 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.zihan.sss.ItemThreeFragment">
-    
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnHit"
-        android:text="Hit"/>
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.squareink.zihan.sss.Register"
+    android:orientation="vertical"
+    >
     <TextView
-        android:id="@+id/tvJsonItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnHit"
-        android:text="Hello World"
-        android:textSize="30sp"
+        android:text="User Information"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:id="@+id/info_roll"
+        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/info_username"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/info_university"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="University"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/info_email"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="EMail"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/info_studentNO"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Student Number"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         />
 
-</RelativeLayout>
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:clickable="false"
+        />
+</LinearLayout>

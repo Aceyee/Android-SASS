@@ -1,4 +1,4 @@
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -35,7 +35,7 @@ public class Register extends Activity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getBaseContext(), adapterView.getItemAtPosition(i)+" selected", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), adapterView.getItemAtPosition(i)+" selected", Toast.LENGTH_LONG).show();
                 user_roll= (String) adapterView.getItemAtPosition(i);
             }
 
@@ -56,6 +56,6 @@ public class Register extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(this);
         backgroundTask.execute(method, user_name, user_pass,
                 user_university, user_roll, user_email, user_studentNO);
-        finish();
+        //finish();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.zihan.sss;
+package com.squareink.zihan.sss;
 
 /**
  * Created by Zihan on 2018/5/5.
@@ -23,10 +23,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class ItemThreeFragment extends Fragment {
+public class ItemFiveFragment extends Fragment {
     private TextView tvData;
-    public static ItemThreeFragment newInstance() {
-        ItemThreeFragment fragment = new ItemThreeFragment();
+    public static ItemFiveFragment newInstance() {
+        ItemFiveFragment fragment = new ItemFiveFragment();
         return fragment;
     }
 
