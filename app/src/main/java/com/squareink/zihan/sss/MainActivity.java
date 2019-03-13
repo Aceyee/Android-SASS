@@ -11,6 +11,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;              // navigation buttons
     private static User user;                               // current logged user
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.action_item1:
-                                if(user.getRoll().equals("Student")) {
+                                if (user.getRoll().equals("Student")) {
                                     selectedFragment = ItemOneStudentFragment.newInstance();
-                                }else if(user.getRoll().equals("Professor")){
+                                } else if (user.getRoll().equals("Professor")) {
                                     selectedFragment = ItemOneProfessorFragment.newInstance();
                                 }
                                 break;
@@ -46,28 +47,26 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-        
+
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(user.getRoll().equals("Student")) {
+        if (user.getRoll().equals("Student")) {
             transaction.replace(R.id.frame_layout, ItemOneStudentFragment.newInstance());
-        }else if(user.getRoll().equals("Professor")){
+        } else if (user.getRoll().equals("Professor")) {
             transaction.replace(R.id.frame_layout, ItemOneProfessorFragment.newInstance());
         }
         transaction.commit();
     }
 
     /**
-     * @return
-     * get current user info
+     * @return get current user info
      */
     public static User getUser() {
         return user;
     }
 
     /**
-     * @param user
-     * set current user info
+     * @param user set current user info
      */
     public static void setUser(User user) {
         MainActivity.user = user;
