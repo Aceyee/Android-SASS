@@ -13,45 +13,30 @@ import java.util.TimerTask;
  * Created by Zihan on 2018/6/27.
  */
 
-public class DisplayResult extends AppCompatActivity{
+public class DisplayResult extends AppCompatActivity {
     private static TextView tv_number;
     private static int num;
     private int id;
     private Context ctx;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
-        ctx=this;
+        ctx = this;
         Bundle extra = getIntent().getExtras();
-        if (extra!=null){
+        if (extra != null) {
             id = extra.getInt("courseid");
         }
         tv_number = (TextView) findViewById(R.id.result_number);
-        tv_number.setText(num+"");
+        tv_number.setText(num + "");
 
         String method = "display";
         BackgroundTask backgroundTask = new BackgroundTask(ctx);
-        backgroundTask.execute(method, id+"");
-
-        /*
-        Timer timer = new Timer ();
-
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                    }
-                });
-            }
-        },0, 1000);
-        */
+        backgroundTask.execute(method, id + "");
     }
 
     public static void setNum(int num) {
-        tv_number.setText(num+"");
+        tv_number.setText(num + "");
     }
 }
