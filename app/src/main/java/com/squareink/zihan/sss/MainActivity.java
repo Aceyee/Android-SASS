@@ -9,13 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
-    private static User user;
+    BottomNavigationView bottomNavigationView;              // navigation buttons
+    private static User user;                               // current logged user
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+
+        // bind view in the activity_main.xml
+        bottomNavigationView = findViewById(R.id.navigation);
+
+        // set navigation buttons
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+        
         //Manually displaying the first fragment - one time only
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if(user.getRoll().equals("Student")) {
@@ -52,10 +57,18 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    /**
+     * @return
+     * get current user info
+     */
     public static User getUser() {
         return user;
     }
 
+    /**
+     * @param user
+     * set current user info
+     */
     public static void setUser(User user) {
         MainActivity.user = user;
     }
