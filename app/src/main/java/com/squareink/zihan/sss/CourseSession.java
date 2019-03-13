@@ -4,7 +4,7 @@ package com.squareink.zihan.sss;
  * Created by Zihan on 2018/6/25.
  */
 
-public class CourseSession{
+public class CourseSession {
     private int id;                 // course id
     private String university;      // university of this course
     private String course;          // course name
@@ -14,14 +14,13 @@ public class CourseSession{
      * @param id
      * @param university
      * @param course
-     * @param professor
-     * Instantiate a CourseSession given above parameters
+     * @param professor  Instantiate a CourseSession given above parameters
      */
     public CourseSession(int id, String university, String course, String professor) {
-        this.id =id;
-        this.professor=professor;
-        this.course=course;
-        this.university=university;
+        this.id = id;
+        this.professor = professor;
+        this.course = course;
+        this.university = university;
     }
 
     // get*() and set*() methods
