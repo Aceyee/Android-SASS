@@ -1,29 +1,22 @@
 package com.squareink.zihan.sss;
 
-import android.content.Context;
-import android.widget.Button;
-
 /**
  * Created by Zihan on 2018/6/25.
  */
-/*
-public class CourseSession extends android.support.v7.widget.AppCompatButton{
-    private String university;
-    private String course;
-    private String professor;
 
-
-    public CourseSession(Context context, String university, String course, String professor) {
-        super(context);
-        this.professor=professor;
-        this.course=course;
-        this.university=university;
-    }*/
 public class CourseSession{
-    private int id;
-    private String university;
-    private String course;
-    private String professor;
+    private int id;                 // course id
+    private String university;      // university of this course
+    private String course;          // course name
+    private String professor;       // professor of this course
+
+    /**
+     * @param id
+     * @param university
+     * @param course
+     * @param professor
+     * Instantiate a CourseSession given above parameters
+     */
     public CourseSession(int id, String university, String course, String professor) {
         this.id =id;
         this.professor=professor;
@@ -31,6 +24,7 @@ public class CourseSession{
         this.university=university;
     }
 
+    // get*() and set*() methods
     public String getUniversity() {
         return university;
     }
