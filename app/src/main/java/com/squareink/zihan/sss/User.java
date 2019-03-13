@@ -5,24 +5,31 @@ package com.squareink.zihan.sss;
  */
 
 public class User {
-    private String username;
-    private String passwd;
-    private String university;
-    private String roll;
-    private String email;
-    private String studentNO;
+    private String username;        // user name
+    private String passwd;          // password
+    private String university;      // university
+    private String roll;            // student ? professor
+    private String email;           // email address
+    private String studentNO;       // student number
 
-    public User(){
+    /**
+     * @param username
+     * @param passwd
+     * @param university
+     * @param roll
+     * @param email
+     * @param studentNO  Instantiate a new User given above parameter
+     */
+    public User(String username, String passwd, String university, String roll, String email, String studentNO) {
+        this.username = username;
+        this.passwd = passwd;
+        this.university = university;
+        this.roll = roll;
+        this.email = email;
+        this.studentNO = studentNO;
+    }
 
-    }
-    public User(String username, String passwd, String university, String roll, String email, String studentNO){
-        this.username=username;
-        this.passwd=passwd;
-        this.university=university;
-        this.roll=roll;
-        this.email=email;
-        this.studentNO=studentNO;
-    }
+    // below are get*() and set*() methods
     public String getUsername() {
         return username;
     }
@@ -71,16 +78,20 @@ public class User {
         this.studentNO = studentNO;
     }
 
-    public boolean isStudent(){
+    public boolean isStudent() {
         return roll.equals("Student");
     }
 
-    public boolean isProfessor(){
+    public boolean isProfessor() {
         return roll.equals("Professor");
     }
 
+
+    /**
+     * @return the user statement
+     */
     @Override
     public String toString() {
-        return username+" "+university+" "+email;
+        return username + " " + university + " " + email;
     }
 }

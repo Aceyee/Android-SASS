@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Debug;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -30,8 +32,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     AlertDialog alertDialog;
     Context ctx;
 
-    //String MODE = "local";
-    String MODE = "APP";
+    String MODE = "TEST";
+//    String MODE = "PRODUCTION";
     String url;
     BackgroundTask(Context ctx){
         this.ctx=ctx;
@@ -44,10 +46,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         String method =params[0];
-        if(MODE.equals("APP")){
+        if(MODE.equals("PRODUCTION")){
             url = "http://www.squareink.xyz/php/";
-        }else{
-            url = "http://10.0.2.2/php/";
+        }else if(MODE.equals("TEST")){
+            url = "http://192.168.1.106/public_html/html_old/php/";
         }
         if(method.equals("register")){
             return BackgroundRegister(params);
@@ -233,13 +235,14 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
         String user_roll = params[4];
         String user_email = params[5];
         String user_studentNO = params[6];
-
         try {
             URL url = new URL(reg_url);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.setDoOutput(true);
             //httpURLConnection.setDoInput(true);
+            Log.d("Reg D",reg_url);
+
             OutputStream OS = httpURLConnection.getOutputStream();
             BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS, "UTF-8"));
             String data = URLEncoder.encode("user_name","UTF-8")+"="+URLEncoder.encode(user_name,"UTF-8")+"&"+
