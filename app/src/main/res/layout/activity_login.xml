@@ -4,13 +4,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Login"
-    android:background="#0BB990"
+    android:background="@color/colorBlue"
     android:orientation="vertical"
     >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login Form"
+        android:text="Welcome! Please Log in"
         android:textAppearance="?android:textAppearanceLarge"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
@@ -39,19 +39,19 @@
         android:maxLines="1"
         />
     <Button
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:onClick="userLogin"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Register Now"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:onClick="userReg"
         />
 </LinearLayout>
