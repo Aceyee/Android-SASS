@@ -18,7 +18,7 @@ public class Register extends Activity {
     EditText ET_USER_NAME, ET_USER_PASS, ET_USER_UNIVERSITY, ET_USER_STUDENTNO, ET_USER_EMAIL;
 
     // strings to store the above EditText
-    String user_name, user_pass, user_roll, user_university, user_studentNO, user_email;
+    String user_name, user_pass, user_role, user_university, user_studentNO, user_email;
 
     // spinner for toggling roles between student and professor
     Spinner spinner;
@@ -47,7 +47,7 @@ public class Register extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //Toast.makeText(getBaseContext(), adapterView.getItemAtPosition(i)+" selected", Toast.LENGTH_LONG).show();
-                user_roll = (String) adapterView.getItemAtPosition(i);
+                user_role = (String) adapterView.getItemAtPosition(i);
             }
 
             @Override
@@ -73,6 +73,6 @@ public class Register extends Activity {
         String method = "register";
         BackgroundTask backgroundTask = new BackgroundTask(this);
         backgroundTask.execute(method, user_name, user_pass,
-                user_university, user_roll, user_email, user_studentNO);
+                user_university, user_role, user_email, user_studentNO);
     }
 }

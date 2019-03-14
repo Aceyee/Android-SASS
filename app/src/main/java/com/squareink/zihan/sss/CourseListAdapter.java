@@ -45,7 +45,7 @@ public class CourseListAdapter extends ArrayAdapter<CourseSession> {
         tv_course.setText(course);
         tv_professor.setText(professor);
 
-        if(MainActivity.getUser().getRoll().equals("Student")) {
+        if(MainActivity.getUser().getRole().equals("Student")) {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
