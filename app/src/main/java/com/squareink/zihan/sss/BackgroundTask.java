@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Debug;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,8 +32,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     AlertDialog alertDialog;
     Context ctx;
 
-    String MODE = "TEST";
-    //    String MODE = "PRODUCTION";
+//    String MODE = "TEST";
+    String MODE = "PRODUCTION";
     String url;
 
     BackgroundTask(Context ctx) {
@@ -48,7 +49,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... params) {
         String method = params[0];
         if (MODE.equals("PRODUCTION")) {
-            url = "http://www.squareink.xyz/php/";
+            url = "http://www.squareink.xyz/php/sas/";
         } else if (MODE.equals("TEST")) {
             url = "http://192.168.1.106/public_html/html_old/php/sas/";
         }
@@ -321,8 +322,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        System.out.println(result);
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Log.d("value: ", result);
         if (result.equals("Registration Success")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
         } else if (result.contains("Login Success")) {
