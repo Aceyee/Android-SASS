@@ -321,6 +321,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        System.out.println(result);
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         if (result.equals("Registration Success")) {
             Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
         } else if (result.contains("Login Success")) {
