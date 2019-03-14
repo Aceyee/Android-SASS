@@ -27,9 +27,10 @@ public class ItemThreeFragment extends Fragment {
     TextView tv_username;
     TextView tv_univeristy;
     TextView tv_email;
-    TextView tv_roll;
+    TextView tv_role;
     TextView tv_studentNO;
     User user;
+
     public static ItemThreeFragment newInstance() {
         ItemThreeFragment fragment = new ItemThreeFragment();
         return fragment;
@@ -45,14 +46,15 @@ public class ItemThreeFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_item_three, container, false);
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        tv_username = (TextView) view.findViewById(R.id.info_username);
-        tv_univeristy = (TextView) view.findViewById(R.id.info_university);
-        tv_email = (TextView) view.findViewById(R.id.info_email);
-        tv_roll = (TextView) view.findViewById(R.id.info_roll);
-        tv_studentNO = (TextView) view.findViewById(R.id.info_studentNO);
-        user=MainActivity.getUser();
+        tv_username = view.findViewById(R.id.info_username);
+        tv_univeristy = view.findViewById(R.id.info_university);
+        tv_email = view.findViewById(R.id.info_email);
+        tv_role = view.findViewById(R.id.info_role);
+        tv_studentNO = view.findViewById(R.id.info_studentNO);
+        user = MainActivity.getUser();
         setText();
     }
 
@@ -60,7 +62,7 @@ public class ItemThreeFragment extends Fragment {
         tv_username.setText(user.getUsername());
         tv_email.setText(user.getEmail());
         tv_univeristy.setText(user.getUniversity());
-        tv_roll.setText(user.getRoll());
+        tv_role.setText(user.getRole());
         tv_studentNO.setText(user.getStudentNO());
     }
 }
